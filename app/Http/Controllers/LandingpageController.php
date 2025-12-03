@@ -38,7 +38,7 @@ class LandingpageController extends Controller
             ->setUrl(url()->current())
             ->setType('website')
             ->setSiteName('Sekolah Inovatif')
-            ->addImage(asset('images/og-image.jpg'), [
+            ->addImage(asset('logo/SI_merahputih_#01.png'), [
                 'width' => 1200,
                 'height' => 630,
                 'alt' => 'Sekolah Inovatif Platform'
@@ -49,14 +49,14 @@ class LandingpageController extends Controller
             ->setDescription('Solusi digital terpadu untuk manajemen sekolah modern di Indonesia')
             ->setType('summary_large_image')
             ->setUrl(url()->current())
-            ->setImage(asset('images/twitter-card.jpg'));
+            ->setImage(asset('logo/SI_merahputih_#01.png'));
 
         // JSON-LD Structured Data
         JsonLd::setTitle('Sekolah Inovatif')
             ->setDescription('Platform digitalisasi manajemen sekolah terlengkap di Indonesia')
             ->setType('Organization')
             ->addValue('url', url()->current())
-            ->addValue('logo', asset('images/logo.png'))
+            ->addValue('logo', asset('logo/SI_merahputih_#01.png'))
             ->addValue('contactPoint', [
                 '@type' => 'ContactPoint',
                 'telephone' => '+62-xxx-xxxx-xxxx',
