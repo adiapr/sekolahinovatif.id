@@ -69,8 +69,10 @@
                     <!-- Logo -->
                     <div class="flex items-center space-x-3">
                         <div class="w-12 h-12 bg-gradient-to-br from-red-600 to-red-800 rounded-lg flex items-center justify-center shadow-lg">
-                            <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                            {{-- <i class="fas fa-graduation-cap text-2xl text-white"></i> --}}
+                            <img src="{{ asset('logo/SI_white.png') }}" alt="" class="h-8">
                         </div>
+                        {{-- <img src="{{ asset('logo/SI_red.png') }}" alt="" class="h-10"> --}}
                         <div>
                             <h1 class="text-2xl font-bold text-gray-900">Sekolah <span class="text-red-600">Inovatif</span></h1>
                             <p class="text-xs text-gray-500">Platform Digitalisasi Sekolah</p>
@@ -871,7 +873,8 @@
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3">
                             <div class="w-12 h-12 bg-gradient-to-br from-red-600 to-red-800 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-graduation-cap text-2xl"></i>
+                                {{-- <i class="fas fa-graduation-cap text-2xl"></i> --}}
+                                <img src="{{ asset('logo/SI_white.png') }}" alt="" class="h-8">
                             </div>
                             <div>
                                 <h3 class="text-xl font-bold">Sekolah Inovatif</h3>
