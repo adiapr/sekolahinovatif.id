@@ -53,10 +53,10 @@ class ArticleController extends Controller
         $description = 'Informasi terbaru seputar digitalisasi pendidikan dan tips untuk sekolah modern';
         
         if ($request->filled('search')) {
-            $title = 'Hasil Pencarian: ' . $request->search . ' - Sekolah Inovatif';
+            $title = 'Hasil Pencarian: ' . $request->search;
         } elseif ($request->filled('category')) {
             $categoryName = $this->getCategoryName($request->category);
-            $title = 'Artikel ' . $categoryName . ' - Sekolah Inovatif';
+            $title = 'Artikel ' . $categoryName;
             $description = 'Artikel dan informasi seputar ' . $categoryName . ' untuk digitalisasi sekolah';
         }
 
@@ -104,7 +104,7 @@ class ArticleController extends Controller
             ->get();
 
         // Set SEO
-        $title = $article->meta_title ?? $article->title . ' - Sekolah Inovatif';
+        $title = $article->meta_title ?? $article->title;
         $description = $article->meta_description ?? $article->excerpt ?? strip_tags(\Str::limit($article->content, 160));
         
         SEOMeta::setTitle($title);
