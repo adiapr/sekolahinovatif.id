@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\TwitterCard;
 
 class ArticleController extends Controller
 {
@@ -45,6 +48,33 @@ class ArticleController extends Controller
             ->groupBy('category')
             ->get();
 
+        // Set SEO
+        $title = 'Artikel & Berita - Sekolah Inovatif';
+        $description = 'Informasi terbaru seputar digitalisasi pendidikan dan tips untuk sekolah modern';
+        
+        if ($request->filled('search')) {
+            $title = 'Hasil Pencarian: ' . $request->search . ' - Sekolah Inovatif';
+        } elseif ($request->filled('category')) {
+            $categoryName = $this->getCategoryName($request->category);
+            $title = 'Artikel ' . $categoryName . ' - Sekolah Inovatif';
+            $description = 'Artikel dan informasi seputar ' . $categoryName . ' untuk digitalisasi sekolah';
+        }
+
+        SEOMeta::setTitle($title);
+        SEOMeta::setDescription($description);
+        SEOMeta::addKeyword(['artikel', 'berita', 'sekolah inovatif', 'digitalisasi pendidikan', 'manajemen sekolah']);
+
+        OpenGraph::setTitle($title);
+        OpenGraph::setDescription($description);
+        OpenGraph::setUrl(route('public.articles.index'));
+        OpenGraph::setType('website');
+        OpenGraph::addImage(asset('logo/SI_red.png'));
+
+        TwitterCard::setTitle($title);
+        TwitterCard::setDescription($description);
+        TwitterCard::setType('summary');
+        TwitterCard::setImage(asset('logo/SI_red.png'));
+
         return view('pages.public.articles.index', compact(
             'articles',
             'popularArticles',
@@ -73,6 +103,58 @@ class ArticleController extends Controller
             ->take(3)
             ->get();
 
+        // Set SEO
+        $title = $article->meta_title ?? $article->title . ' - Sekolah Inovatif';
+        $description = $article->meta_description ?? $article->excerpt ?? strip_tags(\Str::limit($article->content, 160));
+        
+        SEOMeta::setTitle($title);
+        SEOMeta::setDescription($description);
+        SEOMeta::addKeyword(array_merge(
+            ['artikel', 'sekolah inovatif', 'digitalisasi pendidikan'],
+            $article->tags ? explode(',', $article->tags) : []
+        ));
+        SEOMeta::setCanonical(route('public.articles.show', $article->slug));
+
+        OpenGraph::setTitle($title);
+        OpenGraph::setDescription($description);
+        OpenGraph::setUrl(route('public.articles.show', $article->slug));
+        OpenGraph::setType('article');
+        // OpenGraph::addProperty('article:published_time', $article->created_at->toIso8601String());
+        OpenGraph::addProperty('article:author', $article->author->name ?? 'Sekolah Inovatif');
+        OpenGraph::addProperty('article:section', $this->getCategoryName($article->category));
+        
+        if ($article->featured_image) {
+            OpenGraph::addImage(asset('storage/' . $article->featured_image));
+        } else {
+            OpenGraph::addImage(asset('logo/SI_red.png'));
+        }
+
+        TwitterCard::setTitle($title);
+        TwitterCard::setDescription($description);
+        TwitterCard::setType('summary_large_image');
+        if ($article->featured_image) {
+            TwitterCard::setImage(asset('storage/' . $article->featured_image));
+        } else {
+            TwitterCard::setImage(asset('logo/SI_red.png'));
+        }
+
         return view('pages.public.articles.show', compact('article', 'relatedArticles'));
+    }
+
+    /**
+     * Get category name in Indonesian
+     */
+    private function getCategoryName($category)
+    {
+        $categories = [
+            'news' => 'Berita',
+            'tutorial' => 'Tutorial',
+            'announcement' => 'Pengumuman',
+            'tips' => 'Tips & Trik',
+            'event' => 'Event',
+            'application' => 'Aplikasi'
+        ];
+
+        return $categories[$category] ?? ucfirst($category);
     }
 }

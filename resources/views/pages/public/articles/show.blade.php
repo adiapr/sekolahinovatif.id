@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $article->title }} - Sekolah Inovatif</title>
-    <meta name="description" content="{{ $article->excerpt ?? Str::limit(strip_tags($article->content), 160) }}">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
+<x-app-layout>
+    {{-- @include('partials.navbar') --}}
+    @push('styles')
+        <style>
         .article-content {
             line-height: 1.8;
         }
@@ -57,9 +51,7 @@
             @apply bg-gray-100 font-semibold;
         }
     </style>
-</head>
-<body class="bg-gray-50">
-    @include('partials.navbar')
+    @endpush
 
     <!-- Article Header -->
     <article class="pt-32 pb-16">
@@ -330,7 +322,7 @@
         </section>
     @endif
 
-    @include('partials.footer')
+    {{-- @include('partials.footer') --}}
 
     <script>
         // Mobile menu toggle
@@ -343,5 +335,4 @@
             });
         }
     </script>
-</body>
-</html>
+</x-app-layout>

@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artikel - Sekolah Inovatif</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-gray-50">
-    @include('partials.navbar')
+<x-app-layout>
+    {{-- @include('partials.navbar') --}}
 
     <!-- Hero Section -->
     <section class="bg-gradient-to-r from-red-600 to-red-800 pt-32 pb-16">
@@ -180,7 +171,7 @@
         </div>
     </section>
 
-    @include('partials.footer')
+    {{-- @include('partials.footer') --}}
 
     <script>
         // Mobile menu toggle
@@ -193,5 +184,4 @@
             });
         }
     </script>
-</body>
-</html>
+</x-app-layout>
