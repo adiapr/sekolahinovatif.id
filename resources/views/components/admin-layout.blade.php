@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
@@ -91,70 +94,12 @@
 
             <!-- Admin Panel Section -->
             <nav class="flex-1 overflow-y-auto py-6">
-                <div class="px-4 mb-4">
-                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider sidebar-text">Admin Panel</h3>
-                </div>
-
-                <a href="#" class="flex items-center px-6 py-3 text-gray-300 hover:bg-red-600 hover:text-white transition-colors">
-                    <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                    </svg>
-                    <span class="sidebar-text">Admin Dashboard</span>
-                </a>
-
-                <a href="#" class="flex items-center px-6 py-3 text-gray-300 hover:bg-red-600 hover:text-white transition-colors">
-                    <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-                    </svg>
-                    <span class="sidebar-text">Data Members</span>
-                </a>
-
-                <a href="#" class="flex items-center px-6 py-3 text-gray-300 hover:bg-red-600 hover:text-white transition-colors">
-                    <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                    </svg>
-                    <span class="sidebar-text">Calon Member</span>
-                </a>
-
-                <a href="#" class="flex items-center px-6 py-3 text-gray-300 hover:bg-red-600 hover:text-white transition-colors">
-                    <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                    </svg>
-                    <span class="sidebar-text">Data Pengunjung</span>
-                </a>
-
-                <a href="{{ route('articles.index') }}" class="flex items-center px-6 py-3 {{ request()->routeIs('articles.*') ? 'bg-red-600 text-white font-medium' : 'text-gray-300 hover:bg-red-600 hover:text-white' }} transition-colors">
-                    <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
-                    </svg>
-                    <span class="sidebar-text">Kelola Article</span>
-                </a>
-
-                <a href="#" class="flex items-center px-6 py-3 text-gray-300 hover:bg-red-600 hover:text-white transition-colors">
-                    <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                    </svg>
-                    <span class="sidebar-text">Data Frontliner</span>
-                </a>
-
-                <!-- Reports Section -->
-                <div class="px-4 mt-8 mb-4">
-                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider sidebar-text">Reports</h3>
-                </div>
-
-                <a href="#" class="flex items-center px-6 py-3 text-gray-300 hover:bg-red-600 hover:text-white transition-colors">
-                    <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                    </svg>
-                    <span class="sidebar-text">Laporan Kunjungan</span>
-                </a>
-
-                <a href="#" class="flex items-center px-6 py-3 text-gray-300 hover:bg-red-600 hover:text-white transition-colors">
-                    <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                    </svg>
-                    <span class="sidebar-text">Statistik</span>
-                </a>
+                @if (auth()->user()->role == 'superadmin')
+                    @include('sidebar.superadmin')
+                @endif
+                @if (auth()->user()->role == 'school')
+                    @include('sidebar.school')
+                @endif
             </nav>
 
             <!-- Collapse Button -->
@@ -183,7 +128,14 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"/>
                             </svg>
                         </button>
-                        <h1 class="text-base sm:text-lg lg:text-2xl font-semibold text-gray-800 truncate">{{ $title ?? 'Admin Panel' }}</h1>
+                        
+                        <!-- Mobile Logo -->
+                        <div class="flex lg:hidden">
+                            <img src="{{ asset('logo/SI_horizontal_red.png') }}" alt="Logo" class="h-8 w-auto">
+                        </div>
+                        
+                        <!-- Desktop Title -->
+                        <h1 class="hidden lg:block text-base sm:text-lg lg:text-2xl font-semibold text-gray-800 truncate">{{ $title ?? 'Admin Panel' }}</h1>
                     </div>
 
                     <div class="flex items-center space-x-1 sm:space-x-2 lg:space-x-4 flex-shrink-0">
@@ -208,13 +160,52 @@
                         </button>
 
                         <!-- User Profile -->
-                        <div class="flex items-center space-x-1.5 sm:space-x-2">
-                            <div class="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-semibold text-xs sm:text-sm">
-                                {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
-                            </div>
-                            <div class="hidden sm:block">
-                                <p class="text-xs sm:text-sm font-medium text-gray-700 truncate max-w-[100px] lg:max-w-none">{{ auth()->user()->name }}</p>
-                                <p class="text-xs text-gray-500">{{ auth()->user()->role }}</p>
+                        <div class="relative">
+                            <button onclick="toggleProfileDropdown()" class="flex items-center space-x-1.5 sm:space-x-2 hover:bg-gray-50 rounded-lg p-1 transition-colors">
+                                <div class="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-semibold text-xs sm:text-sm">
+                                    {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
+                                </div>
+                                <div class="hidden sm:block">
+                                    <p class="text-xs sm:text-sm font-medium text-gray-700 truncate max-w-[100px] lg:max-w-none">{{ auth()->user()->name }}</p>
+                                    <p class="text-xs text-gray-500">{{ auth()->user()->role }}</p>
+                                </div>
+                                <svg class="w-4 h-4 text-gray-500 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            
+                            <!-- Dropdown Menu -->
+                            <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                                <div class="py-2">
+                                    <!-- Profile Info -->
+                                    <div class="px-4 py-2 border-b border-gray-100 sm:hidden">
+                                        <p class="text-sm font-medium text-gray-900">{{ auth()->user()->name }}</p>
+                                        <p class="text-xs text-gray-500">{{ auth()->user()->role }}</p>
+                                    </div>
+                                    
+                                    <!-- Profile Link -->
+                                    <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+                                        <i class="bi bi-person-circle mr-3 text-gray-400"></i>
+                                        Profile
+                                    </a>
+                                    
+                                    <!-- Settings Link -->
+                                    <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+                                        <i class="bi bi-gear mr-3 text-gray-400"></i>
+                                        Settings
+                                    </a>
+                                    
+                                    <div class="border-t border-gray-100 my-2"></div>
+                                    
+                                    <!-- Logout -->
+                                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                                        @csrf
+                                        <button type="submit" class="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors">
+                                            <i class="bi bi-box-arrow-right mr-3 text-red-500"></i>
+                                            Logout
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -233,6 +224,22 @@
         function isMobile() {
             return window.innerWidth < 1024;
         }
+
+        // Profile Dropdown Toggle
+        function toggleProfileDropdown() {
+            const dropdown = document.getElementById('profileDropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('profileDropdown');
+            const profileButton = event.target.closest('button[onclick="toggleProfileDropdown()"]');
+            
+            if (!profileButton && !dropdown.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
 
         // Sidebar Toggle
         function toggleSidebar() {

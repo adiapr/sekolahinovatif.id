@@ -31,20 +31,29 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'school_name' => ['required', 'string', 'max:255'],
+            'position' => ['required', 'string', 'max:255'],
+            'whatsapp_number' => ['required', 'string', 'max:20', 'regex:/^([0-9\s\-\+\(\)]*)$/'],
+            'school_address' => ['required', 'string', 'max:1000'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'school_name' => $request->school_name,
+            'position' => $request->position,
+            'whatsapp_number' => $request->whatsapp_number,
+            'school_address' => $request->school_address,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'school',
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('school.dashboard', absolute: false));
     }
 }
