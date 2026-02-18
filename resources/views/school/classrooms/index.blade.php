@@ -1,0 +1,86 @@
+<x-admin-layout>
+    <div class="container mx-auto p-6">
+        <div class="bg-white rounded-lg shadow">
+            <div class="flex justify-between items-center p-6 border-b">
+                <h1 class="text-2xl font-bold text-gray-800">Daftar Kelas</h1>
+                <a href="{{ route('school.classrooms.create') }}" 
+                   class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
+                    <i class="bi bi-plus-lg mr-2"></i>
+                    Tambah Kelas
+                </a>
+            </div>
+
+            <div class="p-6">
+                @if(session('success'))
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                @if($classrooms->count() > 0)
+                    <div class="overflow-x-auto">
+                        <table class="w-full table-auto">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Nama Kelas</th>
+                                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Tingkat</th>
+                                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Jurusan</th>
+                                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Kapasitas</th>
+                                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Tahun Akademik</th>
+                                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Jumlah Siswa</th>
+                                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                @foreach($classrooms as $classroom)
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-3 text-sm text-gray-900">{{ $classroom->name }}</td>
+                                        <td class="px-4 py-3 text-sm text-gray-600">{{ $classroom->grade }}</td>
+                                        <td class="px-4 py-3 text-sm text-gray-600">{{ $classroom->major ?? '-' }}</td>
+                                        <td class="px-4 py-3 text-sm text-gray-600">{{ $classroom->capacity ?? '-' }}</td>
+                                        <td class="px-4 py-3 text-sm text-gray-600">{{ $classroom->academic_year }}</td>
+                                        <td class="px-4 py-3 text-sm text-gray-600">{{ $classroom->students()->count() }}</td>
+                                        <td class="px-4 py-3 text-sm">
+                                            <div class="flex space-x-2">
+                                                <a href="{{ route('school.classrooms.show', $classroom) }}" 
+                                                   class="text-blue-600 hover:text-blue-800">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <a href="{{ route('school.classrooms.edit', $classroom) }}" 
+                                                   class="text-yellow-600 hover:text-yellow-800">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                                <form action="{{ route('school.classrooms.destroy', $classroom) }}" 
+                                                      method="POST" class="inline-block">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" 
+                                                            class="text-red-600 hover:text-red-800"
+                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus kelas ini?')">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @else
+                    <div class="text-center py-8">
+                        <i class="bi bi-journal-bookmark text-gray-400 text-6xl mb-4"></i>
+                        <p class="text-gray-500 text-lg">Belum ada kelas yang ditambahkan</p>
+                        <p class="text-gray-400 text-sm">Mulai dengan menambah kelas pertama Anda</p>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+</x-admin-layout>

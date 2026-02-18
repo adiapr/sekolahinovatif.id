@@ -100,6 +100,9 @@
                 @if (auth()->user()->role == 'school')
                     @include('sidebar.school')
                 @endif
+                @if (auth()->user()->role == 'guru')
+                    @include('sidebar.guru')
+                @endif
             </nav>
 
             <!-- Collapse Button -->

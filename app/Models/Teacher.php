@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Teacher extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -19,17 +19,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'school_name',
-        'position',
+        'email',
+        'password',
         'subject',
         'nip',
         'whatsapp_number',
-        'school_address',
-        'email',
-        'password',
-        'role',
         'school_id',
-        'secure'
+        'role',
     ];
 
     /**
@@ -56,26 +52,38 @@ class User extends Authenticatable
     }
 
     /**
-     * Relasi untuk sekolah yang memiliki guru-guru
+     * Boot method to set default role
      */
-    public function teachers()
+    protected static function boot()
     {
-        return $this->hasMany(User::class, 'school_id')->where('role', 'guru');
+        parent::boot();
+        
+        static::creating(function ($model) {
+            $model->role = 'guru';
+        });
     }
 
     /**
-     * Relasi untuk guru yang dimiliki sekolah
+     * Scope untuk hanya mengambil data guru
+     */
+    public function scopeGuru($query)
+    {
+        return $query->where('role', 'guru');
+    }
+
+    /**
+     * Relasi dengan students melalui class rooms
+     */
+    public function classRooms()
+    {
+        return $this->hasMany(ClassRoom::class, 'teacher_id');
+    }
+
+    /**
+     * Relasi dengan sekolah (school)
      */
     public function school()
     {
         return $this->belongsTo(User::class, 'school_id');
-    }
-
-    /**
-     * Relasi classrooms untuk sekolah
-     */
-    public function classRooms()
-    {
-        return $this->hasMany(ClassRoom::class, 'school_id');
     }
 }

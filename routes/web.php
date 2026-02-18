@@ -35,3 +35,4 @@ Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('public
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
 require __DIR__.'/school.php';
+require __DIR__.'/guru.php';
